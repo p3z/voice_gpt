@@ -1,6 +1,6 @@
 # origin:
 #  https://github.com/Ai-Austin/Bing-GPT-Voice-Assistant/blob/main/main.py
-
+#  https://github.com/nerdaxic/glados-tts
 import os
 import asyncio
 import sys
@@ -141,8 +141,7 @@ def generate_response(prompt):
 
 # Create a recognizer object and wake word variables
 recognizer = sr.Recognizer()
-BING_WAKE_WORD = "bing"
-GPT_WAKE_WORD = "chat"
+
 
 # Initialize the text to speech engine 
 engine = pyttsx3.init()
@@ -151,14 +150,7 @@ def speak_text(text):
     engine.say(text)
     engine.runAndWait()
 
-def get_wake_word(phrase):
-    if BING_WAKE_WORD in phrase.lower():
-        return BING_WAKE_WORD
-    elif GPT_WAKE_WORD in phrase.lower():
-        return GPT_WAKE_WORD
-    else:
-        return None
-    
+
 def synthesize_speech(text, output_filename):
     polly = boto3.client('polly', region_name='us-west-2')
     response = polly.synthesize_speech(
